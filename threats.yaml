@@ -283,3 +283,24 @@ training:
           jitter-lambda-sample: 0.0
           jitter-lambda-batch: 0.0
           jitter-decay-lambda-batch: 0.0
+
+    # Stage 5
+    - <<: *common_step
+      trainer: *trainer
+      run:
+        <<: *common_run_resume_model
+        binpacks:
+          - Viren6/Monty-BT4-SF-v8-dd-v0-data/Monty-BT4-SF-v8-dd-v0-data.binpack
+        max_epochs: 200
+        other_options:
+          <<: [*common_run_options, *advanced_stage_options]
+          one-cycle-steps: 76300
+          lr: "3e-5"
+          batch_size: 65536
+          start-lambda: 1
+          end-lambda: 1
+          jitter-lambda-sample: 0.0
+          jitter-lambda-batch: 0.0
+          jitter-decay-lambda-batch: 0.0
+          early-fen-skipping: -1
+          soft-early-fen_skipping: 0
